@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles{% endblock %}
+
+{% block body %}
+    {% if articles is not empty %}
+        {% for article in articles %}
+            <a href="{{ path('view', {'id': article.id}) }}" class="text-decoration-none">
+                <div class="card float-left" style="width: 18rem;">
+                    {% if article.image is not empty %}
+                        <img src="{{ asset('uploads/' ~ article.image) }}" alt="Article Image">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.title }}</h5>
+                        <p class="card-text text-muted">{{ article.summary }}</p>
+                    </div>
+                </div>
+            </a>
+            <br>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

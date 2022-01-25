@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article form{% endblock %}
+
+{% block body %}
+    <h1 class="h3 mb-3 font-weight-normal">Article form</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.title, {'attr': {'class': 'form-control'}}) }}
+    <br>
+    {{ form_row(form.summary, {'attr': {'class': 'form-control'}}) }}
+    <br>
+    {{ form_row(form.content, {'attr': {'class': 'form-control'}}) }}
+    <br>
+    {{ form_row(form.author, {'attr': {'class': 'form-control'}}) }}
+    <br>
+    {% if article.image is not empty %}
+        <div class="row mb-3">
+            <div class="col-md-3 p-2">
+                <img src="{{ asset('uploads/' ~ article.image) }}" alt="Article Image" class="img-thumbnail">
+            </div>
+        </div>
+    {% endif %}
+    <br>
+    {{ form_row(form.image, {'attr': {'class': 'form-control'}}) }}
+    <br>
+    {{ form_row(form.commentsEnabled) }}
+    <br>
+    {{ form_row(form.published) }}
+    <br>
+    {{ form_row(form._token) }}
+
+    {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+    {% if article.id is not null %}
+        <a href="{{ path('delete', {'id': article.id}) }}" class="btn btn-danger">Delete</a>
+    {% endif %}
+    {{ form_end(form, {'render_rest': false}) }}
+{% endblock %}

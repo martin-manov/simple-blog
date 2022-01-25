@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block body %}
+    {% if article.image is not empty %}
+        <div class="row mb-4">
+            <div class="col-md-4 p-2">
+                <img src="{{ asset('uploads/' ~ article.image) }}" alt="Article Image" class="img-thumbnail">
+            </div>
+        </div>    {% endif %}
+    <h1 class="h3 mb-3 font-weight-normal">{{ article.title }}</h1>
+    <p class="mb-0">{{ article.content }}</p>
+    <br>
+    <footer class="blockquote-footer">{{ article.author }}, Published on {{ article.publishDate|date("d/m/Y") }}</footer>
+    <br>
+    {% if article.commentsEnabled %}
+        {{ render(path('comment', {'articleId': article.id})) }}
+    {% endif %}
+    <br>
+    {% for comment in article.comments|sort((a, b) => b.postedDate <=> a.postedDate) %}
+        <div class="card border-secondary mb-3" style="max-width: 18rem;">
+            <div class="card-body text-secondary">
+                <h5 class="card-title">{{ comment.author }}</h5><small class="text-muted">{{ comment.postedDate|date('d/m/Y H:i:s') }}</small>
+                <p class="card-text">{{ comment.content }}</p>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}

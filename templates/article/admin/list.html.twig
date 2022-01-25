@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles{% endblock %}
+
+{% block body %}
+    {% if articles is not empty %}
+        {% for article in articles %}
+            <p>
+                <a href="{{ path('edit', {'id': article.id}) }}">{{ article.title }}</a>
+            </p>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
