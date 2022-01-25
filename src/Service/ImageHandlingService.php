@@ -29,6 +29,8 @@ class ImageHandlingService
     }
 
     /**
+     * Handles image upload and gets slugified name
+     *
      * @param UploadedFile|null $image
      * @return string
      */
@@ -47,6 +49,8 @@ class ImageHandlingService
     }
 
     /**
+     * Removes image from file system
+     *
      * @param string|null $name
      * @return void
      */

@@ -21,6 +21,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminController extends AbstractController
 {
     /**
+     * List of all articles
+     *
      * @Route("/", name="list", methods={"GET"})
      *
      * @param ArticleRepository $repository
@@ -33,6 +35,8 @@ class AdminController extends AbstractController
     }
 
     /**
+     * Create a new article
+     *
      * @Route("/create", name="create", methods={"GET", "POST"})
      *
      * @param Request $request
@@ -68,6 +72,8 @@ class AdminController extends AbstractController
     }
 
     /**
+     * Edit existing article by ID
+     *
      * @Route("/edit/{id}", name="edit", methods={"GET", "POST"})
      *
      * @param Request $request
@@ -110,6 +116,8 @@ class AdminController extends AbstractController
     }
 
     /**
+     * Delete article by ID
+     *
      * @Route("/delete/{id}", name="delete")
      *
      * @param int $id

@@ -14,12 +14,17 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ArticleRepository extends ServiceEntityRepository
 {
+    /**
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Article::class);
     }
 
     /**
+     * Get published articles
+     *
      * @return float|int|mixed|string
      */
     public function findPublished()

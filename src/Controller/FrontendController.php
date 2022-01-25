@@ -14,6 +14,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class FrontendController extends AbstractController
 {
     /**
+     * List of published articles
+     *
      * @Route("/", name="index")
      *
      * @param ArticleRepository $repository
@@ -26,6 +28,8 @@ class FrontendController extends AbstractController
     }
 
     /**
+     * View article by ID
+     *
      * @Route("/article/{id}", name="view")
      *
      * @param Request $request
@@ -33,8 +37,11 @@ class FrontendController extends AbstractController
      * @param ArticleRepository $repository
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function viewAction(Request $request, int $id, ArticleRepository $repository): \Symfony\Component\HttpFoundation\Response
-    {
+    public function viewAction(
+        Request $request,
+        int $id,
+        ArticleRepository $repository
+    ): \Symfony\Component\HttpFoundation\Response {
         if (!$article = $repository->find($id)) {
             throw new NotFoundHttpException('Article not found');
         }
@@ -43,6 +50,8 @@ class FrontendController extends AbstractController
     }
 
     /**
+     * Render comment form per article by ID
+     *
      * @Route("/comment/{articleId}", name="comment")
      *
      * @param Request $request

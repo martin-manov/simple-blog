@@ -12,12 +12,17 @@ class ArticleService
      */
     private $imageHandler;
 
+    /**
+     * @param ImageHandlingService $imageHandler
+     */
     public function __construct(ImageHandlingService $imageHandler)
     {
         $this->imageHandler = $imageHandler;
     }
 
     /**
+     * Set article data from form
+     *
      * @param Article $article
      * @param FormInterface $form
      * @return void
